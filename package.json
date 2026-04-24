@@ -1,0 +1,26 @@
+{
+  "name": "zeel-fashion",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "crypto": "^1.0.1",
+    "dayjs": "^1.11.20",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.4.1",
+    "multer": "^2.1.1",
+    "razorpay": "^2.9.6",
+    "uuid": "^13.0.0"
+  }
+}
