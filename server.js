@@ -7,14 +7,19 @@ const app = express();
 
 connectDB();
 // app.use(cors());
-app.use(express.json());
-app.use(cookieParser());
+
 app.use(
   cors({
     origin: "https://zeel-fashion.vercel.app",
-    credentials: true, // ⭐ REQUIRED
-  }),
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
 );
+
+app.options("*", cors());
+app.use(express.json());
+app.use(cookieParser());
 // Routes
 app.use("/uploads", express.static("uploads"));
 app.use("/api/auth", require("./routes/authRoutes"));
