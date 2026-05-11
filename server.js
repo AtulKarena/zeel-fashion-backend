@@ -11,10 +11,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://zeel-fashion.vercel.app/",
+    origin: "https://zeel-fashion.vercel.app",
     credentials: true, // ⭐ REQUIRED
-    sameSite: "none",
-    secure: true, // (true only if HTTPS)
   }),
 );
 // Routes
