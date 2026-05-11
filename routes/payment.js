@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const uuid = await import("uuid");
-const uuidv4 = uuid.v4;
+const { v4: uuidv4 } = require("uuid");
 
 
 const crypto = require("crypto");
