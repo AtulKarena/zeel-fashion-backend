@@ -83,7 +83,7 @@ exports.login = async (req, res) => {
         expiresIn: "7d",
       },
     );
-
+    console.log("Generated JWT Token:", token); // Debugging line
     res.cookie("token", token, {
       httpOnly: true,
       secure: false, // true in production (HTTPS)
@@ -163,13 +163,12 @@ exports.getUserProfile = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      data: user
+      data: user,
     });
-
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: error.message
+      message: error.message,
     });
   }
 };
