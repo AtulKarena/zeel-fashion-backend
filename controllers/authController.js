@@ -85,7 +85,6 @@ exports.login = async (req, res) => {
     );
     console.log("Generated JWT Token:", token); // Debugging line
     res.cookie("token", token, {
-      httpOnly: true,
       sameSite: true,
       secure: true, // true in production (HTTPS)
       maxAge: 7 * 24 * 60 * 60 * 1000,
