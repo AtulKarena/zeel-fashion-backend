@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-
+// mongodb://127.0.0.1:27017/clothShop # Local MongoDB
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb+srv://atulkarena2903_db_user:rCLB5ulC43RC32im@cluster0.yzbgoxb.mongodb.net/zeel_fashion?retryWrites=true&w=majority");
+    await mongoose.connect(process.env.MONGODB_URI);
     console.log("MongoDB Connected");
   } catch (error) {
     console.error(error);
