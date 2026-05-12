@@ -5,14 +5,12 @@ const mongoose = require("mongoose");
 exports.createProduct = async (req, res) => {
   try {
     // Validation
-      console.log("req.body", req.body);
     if (!req.body.name || !req.body.price || !req.body.category) {
       return res.status(400).json({
         success: false,
         message: "Please provide product name, price, and category",
       });
     }
-    console.log("req.files", req.files);
     const imageUrls = req.files.map((file) => file.path);
     /* if (!req.files || req.files.length === 0) {
       return res.status(400).json({
@@ -24,12 +22,10 @@ exports.createProduct = async (req, res) => {
     /*     const imagePaths = req.files.map(
       (file) => "http://localhost:5000/" + file.path,
     ); */
-    console.log("imageUrls", imageUrls);
-    console.log(typeof imageUrls);
-    
+
     const productData = {
       ...req.body,
-      images: 'imageUrls',
+      images: imageUrls,
     };
 
     const product = await Product.create(productData);
@@ -40,7 +36,6 @@ exports.createProduct = async (req, res) => {
       data: product,
     });
   } catch (error) {
-    console.error("Create Product Error:", error);
     res.status(500).json({
       success: false,
       message: "Failed to create product. Please try again.",
@@ -87,7 +82,6 @@ exports.getProducts = async (req, res) => {
       },
     });
   } catch (error) {
-   
     res.status(500).json({
       success: false,
       message: "Failed to fetch products. Please try again.",
