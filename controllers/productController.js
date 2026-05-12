@@ -22,7 +22,9 @@ exports.createProduct = async (req, res) => {
     /*     const imagePaths = req.files.map(
       (file) => "http://localhost:5000/" + file.path,
     ); */
-
+    console.log("imageUrls", imageUrls);
+    console.log(typeof imageUrls);
+    
     const productData = {
       ...req.body,
       images: imageUrls,
