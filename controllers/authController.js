@@ -76,7 +76,7 @@ exports.login = async (req, res) => {
       });
     }
 
-    const token = jwt.sign(
+   /*  const token = jwt.sign(
       { id: user._id, name: user.name, role: user.role, email: user.email },
       process.env.JWT_SECRET,
       {
@@ -89,12 +89,17 @@ exports.login = async (req, res) => {
       sameSite: "none",
       secure: true, // true in production (HTTPS)
       maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
+    }); */
 
     res.status(200).json({
       success: true,
       message: "Login successful!",
-      role: user.role,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
     });
   } catch (error) {
     res.status(500).json({
