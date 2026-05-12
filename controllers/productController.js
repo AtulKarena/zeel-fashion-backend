@@ -39,6 +39,7 @@ exports.createProduct = async (req, res) => {
       data: product,
     });
   } catch (error) {
+    console.error("Create Product Error:", error);
     res.status(500).json({
       success: false,
       message: "Failed to create product. Please try again.",
@@ -85,6 +86,7 @@ exports.getProducts = async (req, res) => {
       },
     });
   } catch (error) {
+   
     res.status(500).json({
       success: false,
       message: "Failed to fetch products. Please try again.",
