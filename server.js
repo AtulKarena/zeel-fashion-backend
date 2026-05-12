@@ -8,13 +8,38 @@ const app = express();
 connectDB();
 // app.use(cors());
 app.use(express.json());
+/* app.use(
+  cors({
+    origin: "https://zeel-fashion.vercel.app",
+    credentials: true, // ⭐ REQUIRED
+    allowedHeaders: ["Content-Type", "Authorization"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  }),
+); */
+const allowedOrigins = [
+  "https://zeel-fashion.vercel.app",
+];
 
 app.use(cors({
-  origin: [
-    "https://zeel-fashion.vercel.app",
-    "https://zeel-fashion-git-main-aks-projects-cb525b83.vercel.app",
-    "https://zeel-fashion-4j6325i4r-aks-projects-cb525b83.vercel.app"
-  ],
+  origin: function (origin, callback) {
+
+    // allow requests with no origin
+    // like mobile apps or Postman
+    if (!origin) return callback(null, true);
+
+    // allow production frontend
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    // allow all Vercel preview deployments
+    if (origin.endsWith(".vercel.app")) {
+      return callback(null, true);
+    }
+
+    return callback(new Error("Not allowed by CORS"));
+  },
+
   credentials: true
 }));
 app.use(cookieParser());
