@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 exports.createProduct = async (req, res) => {
   try {
     // Validation
+      console.log("req.body", req.body);
     if (!req.body.name || !req.body.price || !req.body.category) {
       return res.status(400).json({
         success: false,
