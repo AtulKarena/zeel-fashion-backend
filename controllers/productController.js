@@ -11,6 +11,7 @@ exports.createProduct = async (req, res) => {
         message: "Please provide product name, price, and category",
       });
     }
+    console.log("req.files", req.files);
     const imageUrls = req.files.map((file) => file.path);
     /* if (!req.files || req.files.length === 0) {
       return res.status(400).json({
