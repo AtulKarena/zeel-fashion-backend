@@ -9,11 +9,11 @@ connectDB();
 // app.use(cors());
 app.use(express.json());
 
-app.use(
+/* app.use(
   cors({
     origin: "https://zeel-fashion.vercel.app",
   }),
-);
+); */
 app.use(cookieParser());
 // Routes
 app.use("/uploads", express.static("uploads"));
