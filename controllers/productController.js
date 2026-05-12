@@ -19,13 +19,13 @@ exports.createProduct = async (req, res) => {
       });
     }
 
-    const imagePaths = req.files.map(
+    /*     const imagePaths = req.files.map(
       (file) => "http://localhost:5000/" + file.path,
-    );
+    ); */
 
     const productData = {
       ...req.body,
-      images: imagePaths,
+      images: req.file.path,
     };
 
     const product = await Product.create(productData);
@@ -116,7 +116,6 @@ exports.getProductById = async (req, res) => {
 // ✏️ Update Product
 exports.updateProduct = async (req, res) => {
   try {
-
     // ✅ Validate Product ID
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
       return res.status(400).json({
@@ -186,7 +185,6 @@ exports.updateProduct = async (req, res) => {
         });
       }
     }
-
 
     // ✅ Update product with validation
     const product = await Product.findByIdAndUpdate(
