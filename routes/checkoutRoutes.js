@@ -16,7 +16,7 @@ router.post("/session", auth, (req, res) => {
       userId,
       type: "checkout",
     },
-    process.env.JWT_SECRET,
+    process.env.JWT_CHECKOUT_SECRET,
     { expiresIn: "10m" }, // short-lived
   );
 

@@ -25,7 +25,7 @@ exports.createOrder = async (req, res) => {
 
     let decoded;
     try {
-      decoded = jwt.verify(checkoutToken, process.env.JWT_SECRET);
+      decoded = jwt.verify(checkoutToken, process.env.JWT_CHECKOUT_SECRET);
     } catch (err) {
       return res.status(403).json({
         message: "Invalid or expired checkout token",
@@ -130,7 +130,7 @@ exports.createOrder = async (req, res) => {
         orderId: order._id,
         type: "payment",
       },
-      process.env.JWT_SECRET,
+      process.env.JWT_CHECKOUT_SECRET,
       { expiresIn: "10m" }
     );
 

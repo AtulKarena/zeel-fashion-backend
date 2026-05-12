@@ -78,14 +78,15 @@ exports.login = async (req, res) => {
 
     const token = jwt.sign(
       { id: user._id, name: user.name, role: user.role, email: user.email },
-      "secret",
+      process.env.JWT_SECRET,
       {
         expiresIn: "7d",
       },
     );
     console.log("Generated JWT Token:", token); // Debugging line
     res.cookie("token", token, {
-      sameSite: true,
+      httpOnly: true,
+      sameSite: "none",
       secure: true, // true in production (HTTPS)
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
@@ -105,7 +106,11 @@ exports.login = async (req, res) => {
 
 exports.logout = (req, res) => {
   try {
-    res.clearCookie("token");
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+    });
     res.status(200).json({
       success: true,
       message: "Logged out successfully",
