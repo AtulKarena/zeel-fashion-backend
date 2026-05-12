@@ -1,4 +1,4 @@
-const multer = require("multer");
+/* const multer = require("multer");
 const path = require("path");
 
 // storage config
@@ -24,4 +24,23 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({ storage, fileFilter });
 
-module.exports = upload;
+module.exports = upload; */
+
+import { v2 as cloudinary } from "cloudinary";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+import multer from "multer";
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+});
+
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "zeel-fashion",
+  },
+});
+
+const upload = multer({ storage });
