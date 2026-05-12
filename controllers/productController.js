@@ -11,13 +11,13 @@ exports.createProduct = async (req, res) => {
         message: "Please provide product name, price, and category",
       });
     }
-
-    if (!req.files || req.files.length === 0) {
+    const imageUrls = req.files.map((file) => file.path);
+    /* if (!req.files || req.files.length === 0) {
       return res.status(400).json({
         success: false,
         message: "Please upload at least one product image",
       });
-    }
+    } */
 
     /*     const imagePaths = req.files.map(
       (file) => "http://localhost:5000/" + file.path,
@@ -25,7 +25,7 @@ exports.createProduct = async (req, res) => {
 
     const productData = {
       ...req.body,
-      images: 'req.file.path',
+      images: imageUrls,
     };
 
     const product = await Product.create(productData);
