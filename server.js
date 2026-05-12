@@ -8,40 +8,15 @@ const app = express();
 connectDB();
 // app.use(cors());
 app.use(express.json());
-/* app.use(
+
+app.use(
   cors({
     origin: "https://zeel-fashion.vercel.app",
     credentials: true, // ⭐ REQUIRED
     allowedHeaders: ["Content-Type", "Authorization"],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   }),
-); */
-const allowedOrigins = [
-  "https://zeel-fashion.vercel.app",
-];
-
-app.use(cors({
-  origin: function (origin, callback) {
-
-    // allow requests with no origin
-    // like mobile apps or Postman
-    if (!origin) return callback(null, true);
-
-    // allow production frontend
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-
-    // allow all Vercel preview deployments
-    if (origin.endsWith(".vercel.app")) {
-      return callback(null, true);
-    }
-
-    return callback(new Error("Not allowed by CORS"));
-  },
-
-  credentials: true
-}));
+);
 app.use(cookieParser());
 // Routes
 app.use("/uploads", express.static("uploads"));

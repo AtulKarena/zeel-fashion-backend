@@ -25,7 +25,7 @@ exports.createProduct = async (req, res) => {
 
     const productData = {
       ...req.body,
-      images: req.file.path,
+      images: 'req.file.path',
     };
 
     const product = await Product.create(productData);
