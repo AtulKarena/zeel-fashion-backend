@@ -13,8 +13,6 @@ app.use(
   cors({
     origin: "https://zeel-fashion.vercel.app",
     credentials: true, // ⭐ REQUIRED
-    allowedHeaders: ["Content-Type", "Authorization"],
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   }),
 );
 // Routes
