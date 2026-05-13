@@ -35,6 +35,7 @@ exports.getDashboardStats = async (req, res) => {
         {
           $match: {
             createdAt: { $gte: startOfToday, $lte: endOfToday },
+            isPaid: true,
           },
         },
         {
@@ -50,6 +51,7 @@ exports.getDashboardStats = async (req, res) => {
         {
           $match: {
             createdAt: { $gte: startOfYesterday, $lte: endOfYesterday },
+            isPaid: true,
           },
         },
         {
@@ -68,7 +70,6 @@ exports.getDashboardStats = async (req, res) => {
         createdAt: { $gte: startOfToday, $lte: endOfToday },
       }),
     ]);
-
 
     // ✅ Safe extraction
     const todaySales = todaySalesResult[0]?.total || 0;
