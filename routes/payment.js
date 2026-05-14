@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const { v4: uuidv4 } = require("uuid");
 
-
 const crypto = require("crypto");
 const Razorpay = require("razorpay");
 
@@ -291,6 +290,21 @@ router.get("/", async (req, res) => {
       success: false,
       message: "Failed to fetch payments. Please try again.",
     });
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const payment = await Payment.findById(req.params.id);
+    if (!payment) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Payment not found" });
+    }
+    await payment.remove();
+    res.json({ success: true, message: "Payment deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Server error" });
   }
 });
 
