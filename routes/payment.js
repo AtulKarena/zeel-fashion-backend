@@ -296,13 +296,12 @@ router.get("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     console.log("Delete payment ID:", req.params.id);
-    const payment = await Payment.findById(req.params.id);
+    const payment = await Payment.findByIdAndDelete(req.params.id);
     if (!payment) {
       return res
         .status(404)
         .json({ success: false, message: "Payment not found" });
     }
-    await payment.remove();
     res.json({ success: true, message: "Payment deleted successfully" });
   } catch (error) {
     res.status(500).json({ success: false, message: "Server error" });
