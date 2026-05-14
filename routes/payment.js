@@ -295,7 +295,6 @@ router.get("/", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   try {
-    console.log("Delete payment ID:", req.params.id);
     const payment = await Payment.findByIdAndDelete(req.params.id);
     if (!payment) {
       return res
